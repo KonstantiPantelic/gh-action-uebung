@@ -34,19 +34,11 @@ jobs:
           tags: ghcr.io/${{ secrets.AzureAppService_ContainerUsername_47f8c69bcd0640488e87dbab5794e969 }}/hello-world2:${{ github.sha }}
           file: ./Dockerfile
 
-    deploy:
-      runs-on: ubuntu-latest
-      needs: build
-      environment:
-        name: 'production'
-        url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-      steps:
-        - name: Deploy to Azure Web App
-          id: deploy-to-webapp
-          uses: azure/webapps-deploy@v2
-          with:
-            app-name: 'Hello-World-Datei'
-            slot-name: 'production'
-            publish-profile: ${{ secrets.AzureAppService_PublishProfile_ae437f14fcd546fab379174d02cf54f2 }}
-            images: 'ghcr.io/${{ secrets.AzureAppService_ContainerUsername_47f8c69bcd0640488e87dbab5794e969 }}/hello-world2:${{ github.sha }}'
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'Hello-World-Datei'
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_ae437f14fcd546fab379174d02cf54f2 }}
+          images: 'ghcr.io/${{ secrets.AzureAppService_ContainerUsername_47f8c69bcd0640488e87dbab5794e969 }}/hello-world2:${{ github.sha }}
