@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: ghcr.io/${{ secrets.AzureAppService_ContainerUsername_55df213ba366441d8e8e9ab1c6836d6a }}/Hello_World:${{ github.sha }}
+        tags: ghcr.io/${{ secrets.AzureAppService_ContainerUsername_55df213ba366441d8e8e9ab1c6836d6a }}/hello_world:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
